@@ -34,7 +34,6 @@ alias zathura="setsid zathura"
 alias z="zathura"
 alias firefox="setsid firefox"
 alias go="cd ~/GoLikeHell"
-bind '"\eL":"clear"'
 alias google-chrome="setsid google-chrome"
 #------------------------------------------------------------------------------------------
 
