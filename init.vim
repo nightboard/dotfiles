@@ -21,8 +21,8 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'ap/vim-css-color'
 Plug 'KeitaNakamura/neodark.vim'							"dark theme like dracula
 Plug 'dracula/vim'											"dracula
+Plug 'majutsushi/tagbar'									"tagbar { do : pacman -S ctags }
 Plug 'flazz/vim-colorschemes'
-Plug 'guidealexis/vim-hackernews'							"news
 Plug 'tomtom/tcomment_vim'									"comment : gc
 Plug 'octol/vim-cpp-enhanced-highlight'			            "systax highlight for c/c++
 Plug 'sheerun/vim-polyglot'				                    "for syntax collection of language pacs
@@ -36,6 +36,7 @@ Plug 'vim-utils/vim-man'                                    "fantastic man pages
 Plug 'lyuts/vim-rtags'                                      "for c++
 Plug 'mbbill/undotree'                                      "for undo stuff
 Plug 'valloric/youcompleteme'                               "youcompleteme
+Plug 'voldikss/vim-floaterm'								"float term
 call plug#end()
 
 set bg=dark
@@ -192,5 +193,7 @@ set ttimeoutlen=0
 
 " for groff
 nmap <c-g> :! groff -ms -e % -T pdf > output.pdf ; zathura output.pdf<CR><CR>
-
 nmap <Leader>cf :ClangFormat<CR>
+
+nnoremap <F5> :w<esc>:FloatermNew node %<CR>
+nnoremap <F2> :w<esc>:TagbarToggle<CR>
