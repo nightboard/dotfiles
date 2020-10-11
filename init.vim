@@ -199,6 +199,6 @@ nmap <Leader>cf :ClangFormat<CR>
 nnoremap <F2> :w<esc>:TagbarToggle<CR>
 
 autocmd FileType javascript nnoremap <buffer> <F5> :w<esc>:FloatermNew node %<CR>
-autocmd FileType c nnoremap <buffer> <F5> :w<esc>:FloatermNew gcc % && ./a.out<CR>
-autocmd FileType c++ nnoremap <buffer> <F5> :w<esc>:FloatermNew g++ % && ./a.out<CR>
+autocmd FileType c nnoremap <buffer> <F5> :w<esc>:FloatermNew gcc % && ./a.out && rm a.out<CR>
+autocmd FileType c++ nnoremap <buffer> <F5> :w<esc>:FloatermNew g++ % && ./a.out && rm a.out<CR>
 autocmd FileType python nnoremap <buffer> <F5> :w<esc>:FloatermNew python3 %<CR>
