@@ -33,11 +33,33 @@ Plug 'lyuts/vim-rtags'                                      "for c++
 Plug 'mbbill/undotree'                                      "for undo stuff
 Plug 'valloric/youcompleteme'                               "youcompleteme
 Plug 'voldikss/vim-floaterm'								"float term
+Plug 'prabirshrestha/vim-lsp'								"lsp
+Plug 'mattn/vim-lsp-settings'								"lsp settings
+Plug 'prabirshrestha/asyncomplete.vim'						"auto complete
 call plug#end()
 "----------------------------------------------------------------------------------------------------------
 
+"----------------------------------------------colorscheme-----------------------------------------------
+"-----------------gruvbox------------------
+colorscheme gruvbox
 
-"-------------------------------------------------basic-------------------------------------------------
+let g:gruvbox_contrast_dark = 'hard'
+if exists('+termguicolors')
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
+"------------------------------------------
+
+
+"-----------------neodark------------------
+"colorscheme neodark
+" make transparant
+"highlight Normal ctermbg=none
+"highlight NonText ctermbg=none
+"------------------------------------------
+
+"-------------------------------------------------basic---------------------------------------------------
 syntax on
 set noerrorbells
 set tabstop=4 softtabstop=4
@@ -71,24 +93,6 @@ nnoremap ] }
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "--------------------------------------------------------------------------------------------------------
-
-colorscheme neodark
-
-" make transparant
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-
-"comment
-noremap <C-m> :normal! I//<CR>
-
-noremap <C-m> :<S-Left>exe "<S-Right>normal! I".b:commentType<CR>
-
-autocmd BufReadPost *.[ch] let b:commentType='//' "C files
-autocmd BufReadPost *.pl let b:commentType='#'    "Perl files
-
-
-set timeoutlen=1000
-set ttimeoutlen=0
 
 "------------------------------------------mappings------------------------------------------------------
 "auto compile
@@ -171,4 +175,48 @@ set ttimeoutlen=0
 if &diff
     highlight! link DiffText MatchParen
 endif
+
+"comment
+noremap <C-m> :normal! I//<CR>
+
+noremap <C-m> :<S-Left>exe "<S-Right>normal! I".b:commentType<CR>
+
+autocmd BufReadPost *.[ch] let b:commentType='//' "C files
+autocmd BufReadPost *.pl let b:commentType='#'    "Perl files
+
+set timeoutlen=1000
+set ttimeoutlen=0
 "----------------------------------------------------------------------------------------------------------
+
+"--------------------------------------------lsp----------------------------------------------------------
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+"---------------------------------------------------------------------------------------------------------
