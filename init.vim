@@ -41,22 +41,22 @@ call plug#end()
 
 "----------------------------------------------colorscheme-----------------------------------------------
 "-----------------gruvbox------------------
-colorscheme gruvbox
-
-let g:gruvbox_contrast_dark = 'hard'
-if exists('+termguicolors')
-	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-let g:gruvbox_invert_selection='0'
+" colorscheme gruvbox
+"
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_invert_selection='0'
 "------------------------------------------
 
 
 "-----------------neodark------------------
-"colorscheme neodark
+colorscheme neodark
+
+" autocmd * highlight Normal ctermbg=none
+" autocmd * highlight NonText ctermbg=none
+
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+
 " make transparant
-"highlight Normal ctermbg=none
-"highlight NonText ctermbg=none
 "------------------------------------------
 
 "-------------------------------------------------basic---------------------------------------------------
@@ -100,6 +100,7 @@ nnoremap ] }
 	autocmd FileType c nnoremap <buffer> <F5> :w<esc>:FloatermNew gcc % && ./a.out && rm a.out<CR>
 	autocmd FileType cpp nnoremap <buffer> <F5> :w<esc>:FloatermNew g++ % && ./a.out && rm a.out<CR>
 	autocmd FileType python nnoremap <buffer> <F5> :w<esc>:FloatermNew python3 %<CR>
+	autocmd FileType typescript nnoremap <buffer> <F5> :w<esc>:FloatermNew ts-node %<CR>
 
 "tagbar toggle
 	nnoremap <F2> :w<esc>:TagbarToggle<CR>
