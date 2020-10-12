@@ -108,7 +108,7 @@ nnoremap ] }
 	nmap <c-g> :! groff -ms -e % -T pdf > output.pdf ; zathura output.pdf<CR><CR>
 
 "undotree
-	nnoremap <leader>u :UndotreeShow<CR>
+	nnoremap <leader>u :UndotreeToggle<CR>
 
 
 "Shortcutting split navigation, saving a keypress:
