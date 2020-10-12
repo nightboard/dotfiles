@@ -101,6 +101,7 @@ nnoremap ] }
 	autocmd FileType cpp nnoremap <buffer> <F5> :w<esc>:FloatermNew g++ % && ./a.out && rm a.out<CR>
 	autocmd FileType python nnoremap <buffer> <F5> :w<esc>:FloatermNew python3 %<CR>
 	autocmd FileType typescript nnoremap <buffer> <F5> :w<esc>:FloatermNew ts-node %<CR>
+	autocmd FileType typescript nnoremap <leader>j :w<esc>:FloatermNew tsc % --outFile a.js ; cat a.js ; rm a.js<CR>
 
 "tagbar toggle
 	nnoremap <F2> :w<esc>:TagbarToggle<CR>
