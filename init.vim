@@ -31,11 +31,16 @@ Plug 'scrooloose/syntastic'				                    "detect error in clang
 Plug 'jremmen/vim-ripgrep'                                  "fast grep
 Plug 'lyuts/vim-rtags'                                      "for c++
 Plug 'mbbill/undotree'                                      "for undo stuff
-Plug 'valloric/youcompleteme'                               "youcompleteme
 Plug 'voldikss/vim-floaterm'								"float term
-Plug 'prabirshrestha/vim-lsp'								"lsp
-Plug 'mattn/vim-lsp-settings'								"lsp settings
-Plug 'prabirshrestha/asyncomplete.vim'						"auto complete
+Plug 'maksimr/vim-jsbeautify'								"formate
+
+							"auto completion
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" to start with coc install :CocInstall ts-server coc-clangd
+"Plug 'valloric/youcompleteme'                              "youcompleteme
+"Plug 'prabirshrestha/vim-lsp'								"lsp
+"Plug 'mattn/vim-lsp-settings'								"lsp settings
+"Plug 'prabirshrestha/asyncomplete.vim'						"auto complete
 call plug#end()
 "----------------------------------------------------------------------------------------------------------
 
@@ -46,6 +51,11 @@ call plug#end()
 " let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_invert_selection='0'
 "------------------------------------------
+
+"-----------------colorcolumn------------------
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
+"----------------------------------------------
 
 
 "-----------------neodark------------------
@@ -143,6 +153,9 @@ nnoremap ] }
 
 " Open corresponding .pdf/.html or preview
 	map <leader>p :!opout <c-r>%<CR><CR>
+
+" Some shortcuts
+	nnoremap ci( f)ci(
 "---------------------------------------------------------------------------------------------------------
 
 "---------------------------------------------Nerd tree---------------------------------------------------
@@ -185,6 +198,7 @@ noremap <C-m> :<S-Left>exe "<S-Right>normal! I".b:commentType<CR>
 
 autocmd BufReadPost *.[ch] let b:commentType='//' "C files
 autocmd BufReadPost *.pl let b:commentType='#'    "Perl files
+autocmd BufNewFile *.cpp r ~/.config/nvim/templates/a.cpp
 
 set timeoutlen=1000
 set ttimeoutlen=0
