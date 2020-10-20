@@ -61,7 +61,8 @@ call plug#end()
 "----------------------------------------------
 
 "-----------------neodark------------------
-colorscheme onedark
+" colorscheme onedark
+colorscheme purify
 "------------------------------------------
 
 
@@ -167,6 +168,9 @@ nnoremap ] }
 " Some shortcuts
 	nnoremap ci( f)ci(
 	nnoremap E $
+
+" full screen mode
+	nnoremap <F3> :AirlineToggle<CR> :set laststatus=0<CR>
 "---------------------------------------------------------------------------------------------------------
 
 "---------------------------------------------Nerd tree---------------------------------------------------
