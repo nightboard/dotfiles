@@ -170,7 +170,7 @@ nnoremap ] }
 	nnoremap E $
 
 " full screen mode
-	nnoremap <F3> :AirlineToggle<CR> :set laststatus=0<CR>
+	nnoremap <F3> :AirlineToggle<CR><esc>:set laststatus=0<CR>
 "---------------------------------------------------------------------------------------------------------
 
 "---------------------------------------------Nerd tree---------------------------------------------------
