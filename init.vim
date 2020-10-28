@@ -16,7 +16,6 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'jreybert/vimagit'
-Plug 'lukesmithxyz/vimling'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'kovetskiy/sxhkd-vim'
@@ -35,7 +34,8 @@ Plug 'voldikss/vim-floaterm'								"float term
 Plug 'maksimr/vim-jsbeautify'								"formate
 Plug 'joshdick/onedark.vim'									"colorscheme
 Plug 'kyoz/purify', { 'rtp': 'vim' }						"colorscheme
-Plug 'pangloss/vim-javascript'								"js highlight
+Plug 'turbio/bracey.vim'									"like live server
+Plug 'rust-lang/rust.vim'                                 "rust
 
 							"auto completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -122,7 +122,20 @@ nnoremap ] }
 	autocmd FileType python nnoremap <buffer> <F5> :w<esc>:FloatermNew python3 %<CR>
 	autocmd FileType typescript nnoremap <buffer> <F5> :w<esc>:FloatermNew ts-node %<CR>
 	autocmd FileType typescript nnoremap <leader>j :w<esc>:FloatermNew tsc % --outFile a.js ; cat a.js ; rm a.js<CR>
+	autocmd FileType lua nnoremap <buffer> <F5> :w<esc>:FloatermNew lua %<CR>
 	autocmd FileType markdown nnoremap <buffer> <F5> :w<esc>:FloatermNew mdv %<CR>
+	autocmd FileType rust nnoremap <buffer> <F5> :w<esc>:FloatermNew rustc % -o a.out && ./a.out && rm a.out<CR>
+
+" auto compile
+	autocmd FileType c nnoremap <buffer> <F6> :w<esc>:term gcc % && ./a.out && rm a.out<CR>
+	autocmd FileType javascript nnoremap <buffer> <F6> :w<esc>:term node %<CR>
+	autocmd FileType cpp nnoremap <buffer> <F6> :w<esc>:term g++ % && ./a.out && rm a.out<CR>
+	autocmd FileType python nnoremap <buffer> <F6> :w<esc>:term python3 %<CR>
+	autocmd FileType typescript nnoremap <buffer> <F6> :w<esc>:term ts-node %<CR>
+	autocmd FileType lua nnoremap <buffer> <F6> :w<esc>:term lua<CR>
+	autocmd FileType markdown nnoremap <buffer> <F6> :w<esc>:term mdv %<CR>
+	autocmd FileType rust nnoremap <buffer> <F6> :w<esc>:term rustc % -o a.out && ./a.out && rm a.out<CR>
+
 
 "tagbar toggle
 	nnoremap <F2> :w<esc>:TagbarToggle<CR>
@@ -143,13 +156,6 @@ nnoremap ] }
 " Spell-check set to <leader>o, 'o' for 'orthography':
 	map <leader>o :setlocal spell! spelllang=en_us<CR>
 
-" vimling:
-	nm <leader>d :call ToggleDeadKeys()<CR>
-	imap <leader>d <esc>:call ToggleDeadKeys()<CR>a
-	nm <leader>i :call ToggleIPA()<CR>
-	imap <leader>i <esc>:call ToggleIPA()<CR>a
-	nm <leader>q :call ToggleProse()<CR>
-
 " Goyo plugin makes text more readable when writing prose:
 	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
@@ -169,8 +175,11 @@ nnoremap ] }
 	nnoremap ci( f)ci(
 	nnoremap E $
 
+" terminal
+	tnoremap <leader><esc> <C-\><C-N>
+
 " full screen mode
-	nnoremap <F3> :AirlineToggle<CR><esc>:set laststatus=0<CR>
+	nnoremap <F3> :AirlineToggle<CR><esc>:set laststatus=0<CR><esc>:set nonumber<CR><esc>:set norelativenumber<esc>:set noruler<esc>:set noshowmode<esc>:highlight NonText ctermfg=0<CR>
 "---------------------------------------------------------------------------------------------------------
 
 "---------------------------------------------Nerd tree---------------------------------------------------
