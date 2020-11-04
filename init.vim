@@ -1,4 +1,4 @@
-let mapleader =","
+let mapleader =" "
 
 "-----------------------------------------plugin manager---------------------------------------------------
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
@@ -14,12 +14,8 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'junegunn/goyo.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'jreybert/vimagit'
 Plug 'bling/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'kovetskiy/sxhkd-vim'
-Plug 'KeitaNakamura/neodark.vim'							"dark theme
 Plug 'majutsushi/tagbar'									"tagbar { do : pacman -S ctags }
 Plug 'tomtom/tcomment_vim'									"comment : gc
 Plug 'octol/vim-cpp-enhanced-highlight'			            "systax highlight for c/c++
@@ -32,10 +28,8 @@ Plug 'lyuts/vim-rtags'                                      "for c++
 Plug 'mbbill/undotree'                                      "for undo stuff
 Plug 'voldikss/vim-floaterm'								"float term
 Plug 'maksimr/vim-jsbeautify'								"formate
-Plug 'joshdick/onedark.vim'									"colorscheme
 Plug 'kyoz/purify', { 'rtp': 'vim' }						"colorscheme
-Plug 'turbio/bracey.vim'									"like live server
-Plug 'rust-lang/rust.vim'                                 "rust
+Plug 'rust-lang/rust.vim'                                   "rust
 
 							"auto completion
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
@@ -61,20 +55,7 @@ call plug#end()
 "----------------------------------------------
 
 "-----------------neodark------------------
-" colorscheme onedark
 colorscheme purify
-"------------------------------------------
-
-
-"-----------------neodark------------------
-" colorscheme neodark
-"
-" autocmd * highlight Normal ctermbg=none
-" autocmd * highlight NonText ctermbg=none
-"
-" autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-
-" make transparant
 "------------------------------------------
 
 "-------------------------------------------------basic---------------------------------------------------
@@ -116,29 +97,29 @@ nnoremap ] }
 
 "------------------------------------------mappings------------------------------------------------------
 "auto compile
-	autocmd FileType javascript nnoremap <buffer> <F5> :w<esc>:FloatermNew node %<CR>
-	autocmd FileType c nnoremap <buffer> <F5> :w<esc>:FloatermNew gcc % && ./a.out && rm a.out<CR>
-	autocmd FileType cpp nnoremap <buffer> <F5> :w<esc>:FloatermNew g++ % && ./a.out && rm a.out<CR>
-	autocmd FileType python nnoremap <buffer> <F5> :w<esc>:FloatermNew python3 %<CR>
-	autocmd FileType typescript nnoremap <buffer> <F5> :w<esc>:FloatermNew ts-node %<CR>
+	autocmd FileType javascript nnoremap <leader>r :w<esc>:FloatermNew node %<CR>
+	autocmd FileType c nnoremap <leader>r :w<esc>:FloatermNew gcc % && ./a.out && rm a.out<CR>
+	autocmd FileType cpp nnoremap <leader>r :w<esc>:FloatermNew g++ % && ./a.out && rm a.out<CR>
+	autocmd FileType python nnoremap <leader>r :w<esc>:FloatermNew python3 %<CR>
+	autocmd FileType typescript nnoremap <leader>r :w<esc>:FloatermNew ts-node %<CR>
+	autocmd FileType lua nnoremap <leader>r :w<esc>:FloatermNew lua %<CR>
+	autocmd FileType markdown nnoremap <leader>r :w<esc>:FloatermNew mdv %<CR>
+	autocmd FileType rust nnoremap <leader>r :w<esc>:FloatermNew rustc % -o a.out && ./a.out && rm a.out<CR>
 	autocmd FileType typescript nnoremap <leader>j :w<esc>:FloatermNew tsc % --outFile a.js ; cat a.js ; rm a.js<CR>
-	autocmd FileType lua nnoremap <buffer> <F5> :w<esc>:FloatermNew lua %<CR>
-	autocmd FileType markdown nnoremap <buffer> <F5> :w<esc>:FloatermNew mdv %<CR>
-	autocmd FileType rust nnoremap <buffer> <F5> :w<esc>:FloatermNew rustc % -o a.out && ./a.out && rm a.out<CR>
 
 " auto compile
-	autocmd FileType c nnoremap <buffer> <F6> :w<esc>:term gcc % && ./a.out && rm a.out<CR>
-	autocmd FileType javascript nnoremap <buffer> <F6> :w<esc>:term node %<CR>
-	autocmd FileType cpp nnoremap <buffer> <F6> :w<esc>:term g++ % && ./a.out && rm a.out<CR>
-	autocmd FileType python nnoremap <buffer> <F6> :w<esc>:term python3 %<CR>
-	autocmd FileType typescript nnoremap <buffer> <F6> :w<esc>:term ts-node %<CR>
-	autocmd FileType lua nnoremap <buffer> <F6> :w<esc>:term lua<CR>
-	autocmd FileType markdown nnoremap <buffer> <F6> :w<esc>:term mdv %<CR>
-	autocmd FileType rust nnoremap <buffer> <F6> :w<esc>:term rustc % -o a.out && ./a.out && rm a.out<CR>
+	autocmd FileType c nnoremap <leader>R :w<esc>:term gcc % && ./a.out && rm a.out<CR>
+	autocmd FileType javascript nnoremap <leader>R :w<esc>:term node %<CR>
+	autocmd FileType cpp nnoremap <leader>R :w<esc>:term g++ % && ./a.out && rm a.out<CR>
+	autocmd FileType python nnoremap <leader>R :w<esc>:term python3 %<CR>
+	autocmd FileType typescript nnoremap <leader>R :w<esc>:term ts-node %<CR>
+	autocmd FileType lua nnoremap <leader>R :w<esc>:term lua<CR>
+	autocmd FileType markdown nnoremap <leader>R :w<esc>:term mdv %<CR>
+	autocmd FileType rust nnoremap <leader>R :w<esc>:term rustc % -o a.out && ./a.out && rm a.out<CR>
 
 
 "tagbar toggle
-	nnoremap <F2> :w<esc>:TagbarToggle<CR>
+	nnoremap <leader>t :w<esc>:TagbarToggle<CR>
 
 "groff document
 	nmap <c-g> :! groff -ms -e % -T pdf > output.pdf ; zathura output.pdf<CR><CR>
@@ -179,7 +160,7 @@ nnoremap ] }
 	tnoremap <leader><esc> <C-\><C-N>
 
 " full screen mode
-	nnoremap <F3> :AirlineToggle<CR><esc>:set laststatus=0<CR><esc>:set nonumber<CR><esc>:set norelativenumber<esc>:set noruler<esc>:set noshowmode<esc>:highlight NonText ctermfg=0<CR>
+	nnoremap <leader>m :AirlineToggle<CR><esc>:set laststatus=0<CR><esc>:set nonumber<CR><esc>:set norelativenumber<esc>:set noruler<esc>:set noshowmode<esc>:highlight NonText ctermfg=0<CR>
 "---------------------------------------------------------------------------------------------------------
 
 "---------------------------------------------Nerd tree---------------------------------------------------
