@@ -29,6 +29,7 @@ Plug 'mbbill/undotree'                                      "for undo stuff
 Plug 'voldikss/vim-floaterm'								"float term
 Plug 'maksimr/vim-jsbeautify'								"formate
 Plug 'kyoz/purify', { 'rtp': 'vim' }						"colorscheme
+Plug 'morhetz/gruvbox'                                      "colorscheme
 Plug 'rust-lang/rust.vim'                                   "rust
 Plug 'puremourning/vimspector'                              "debug
 Plug 'szw/vim-maximizer'                                    "maximizer
@@ -40,19 +41,19 @@ call plug#end()
 
 "----------------------------------------------colorscheme-----------------------------------------------
 "-----------------gruvbox------------------
-" colorscheme gruvbox
-"
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:gruvbox_invert_selection='0'
+colorscheme gruvbox
+
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection='0'
 "------------------------------------------
 
 "-----------------colorcolumn------------------
-" set colorcolumn=80
-" highlight ColorColumn ctermbg=0 guibg=lightgrey
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 "----------------------------------------------
 
 "-----------------neodark------------------
-colorscheme purify
+" colorscheme purify
 "------------------------------------------
 
 "-------------------------------------------------basic---------------------------------------------------
@@ -152,6 +153,8 @@ nnoremap ] }
 " Some shortcuts
 	nnoremap ci( f)ci(
 	nnoremap E $
+    nnoremap D <c-d>
+    nnoremap U <c-u>
 
 " terminal
 	tnoremap <leader><esc> <C-\><C-N>
