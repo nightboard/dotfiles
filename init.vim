@@ -30,6 +30,7 @@ Plug 'voldikss/vim-floaterm'								"float term
 Plug 'maksimr/vim-jsbeautify'								"formate
 Plug 'kyoz/purify', { 'rtp': 'vim' }						"colorscheme
 Plug 'morhetz/gruvbox'                                      "colorscheme
+Plug 'drewtempelmeyer/palenight.vim'                        "colorscheme
 Plug 'rust-lang/rust.vim'                                   "rust
 Plug 'puremourning/vimspector'                              "debug
 Plug 'szw/vim-maximizer'                                    "maximizer
@@ -41,19 +42,20 @@ call plug#end()
 
 "----------------------------------------------colorscheme-----------------------------------------------
 "-----------------gruvbox------------------
-colorscheme gruvbox
+" colorscheme gruvbox
 
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection='0'
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_invert_selection='0'
 "------------------------------------------
 
 "-----------------colorcolumn------------------
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
 "----------------------------------------------
 
-"-----------------neodark------------------
-" colorscheme purify
+"-----------------purify------------------
+colorscheme purify
+" colorscheme palenight
 "------------------------------------------
 
 "-------------------------------------------------basic---------------------------------------------------
@@ -400,7 +402,6 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
