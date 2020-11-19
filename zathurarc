@@ -18,3 +18,6 @@ set recolor true
 set recolor-darkcolor "#dcdccc"
 set recolor-lightcolor "1f1f1f"
 set recolor-lightcolor rgba(0,0,0,0.5)
+
+# hide statusbar
+set guioptions none
