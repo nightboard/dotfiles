@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# $0 is part of POSIX specific whereas BASH_SOURCE is bash specific.
+# echo "[$0] vs. [${BASH_SOURCE[0]}]"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+
+# warning for move forward
+printf "This will overwrite all your dotfiles if you agree type \"yes\": ";
+read choice
+
+if [[ "$choice" != "yes" ]]
+#    ^         ^  ^     ^           spaces are needed
+then
+    echo "install script is cancelled"
+    exit 1
+fi
+
+# mkdir -p ~/.config/x
+# ln -f -s ${BASEDIR}/.xrc ~/.config/x/.xrc
+mkdir -p $HOME/.config/nvim
+ln -f -s ${BASEDIR}/.config/nvim/init.vim $HOME/.config/nvim/init.vim
