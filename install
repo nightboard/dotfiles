@@ -15,7 +15,14 @@ then
     exit 1
 fi
 
-# mkdir -p ~/.config/x
-# ln -f -s ${BASEDIR}/.xrc ~/.config/x/.xrc
 mkdir -p $HOME/.config/nvim
 ln -f -s ${BASEDIR}/.config/nvim/init.vim $HOME/.config/nvim/init.vim
+ln -f -s ${BASEDIR}/.bashrc $HOME/.bashrc
+ln -f -s ${BASEDIR}/.zshrc $HOME/.zshrc
+ln -f -s ${BASEDIR}/.zprofile $HOME/.zprofile
+ln -f -s ${BASEDIR}/.profile $HOME/.zprofile
+
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.local/share
+cp ${BASEDIR}/.local/bin/* $HOME/.local/bin
+cp ${BASEDIR}/.local/share/* $HOME/.local/share
