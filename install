@@ -21,6 +21,8 @@ ln -f -s ${BASEDIR}/.bashrc $HOME/.bashrc
 ln -f -s ${BASEDIR}/.zshrc $HOME/.zshrc
 ln -f -s ${BASEDIR}/.zprofile $HOME/.zprofile
 ln -f -s ${BASEDIR}/.profile $HOME/.zprofile
+mkdir -p $HOME/.config/tmux
+ln -f -s ${BASEDIR}/.config/tmux/tmux.conf $HOME/.config/tmux/tmux.conf
 
 mkdir -p $HOME/.local/bin
 mkdir -p $HOME/.local/share
