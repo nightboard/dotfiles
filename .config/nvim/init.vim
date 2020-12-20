@@ -1,4 +1,5 @@
 let mapleader =" "
+inoremap <c-z> <esc>
 
 "-----------------------------------------plugin manager---------------------------------------------------
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
@@ -29,7 +30,6 @@ Plug 'mbbill/undotree'                                      "for undo stuff
 Plug 'voldikss/vim-floaterm'								"float term
 Plug 'maksimr/vim-jsbeautify'								"formate
 Plug 'kyoz/purify', { 'rtp': 'vim' }						"colorscheme
-Plug 'morhetz/gruvbox'                                      "colorscheme
 Plug 'drewtempelmeyer/palenight.vim'                        "colorscheme
 Plug 'rust-lang/rust.vim'                                   "rust
 Plug 'puremourning/vimspector'                              "debug
@@ -43,9 +43,10 @@ call plug#end()
 "----------------------------------------------colorscheme-----------------------------------------------
 "-----------------gruvbox------------------
 " colorscheme gruvbox
-
+" highlight clear SignColumn
 " let g:gruvbox_contrast_dark = 'hard'
 " let g:gruvbox_invert_selection='0'
+
 "------------------------------------------
 
 "-----------------colorcolumn------------------
@@ -93,6 +94,14 @@ nnoremap ] }
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" manual
+    " filetype on
+    " set keywordprg=pman
+    " set keywordprg=man\ -s
+    " autocmd FileType vim nnoremap <silent><buffer> K <Esc>:help <C-R><C-W><CR>
+    " autocmd FileType vim setlocal keywordprg=:help
+    autocmd FileType php set keywordprg=pman
+
 "--------------------------------------------------------------------------------------------------------
 
 "------------------------------------------mappings------------------------------------------------------
@@ -105,7 +114,8 @@ nnoremap ] }
 	autocmd FileType lua nnoremap <leader>r :w<esc>:FloatermNew lua %<CR>
 	autocmd FileType markdown nnoremap <leader>r :w<esc>:FloatermNew mdv %<CR>
 	autocmd FileType rust nnoremap <leader>r :w<esc>:FloatermNew rustc % -o a.out && ./a.out && rm a.out<CR>
-	autocmd FileType typescript nnoremap <leader>j :w<esc>:FloatermNew tsc % --outFile a.js ; cat a.js ; rm a.js<CR>
+	autocmd FileType typescript nnoremap <leader>r :w<esc>:FloatermNew tsc % --outFile a.js ; cat a.js ; rm a.js<CR>
+    autocmd FileType java nnoremap <leader>r :w<esc>:FloatermNew java %<CR>
 
 " auto compile
 	autocmd FileType c nnoremap <leader>R :w<esc>:term gcc % && ./a.out && rm a.out<CR>
@@ -116,6 +126,7 @@ nnoremap ] }
 	autocmd FileType lua nnoremap <leader>R :w<esc>:term lua<CR>
 	autocmd FileType markdown nnoremap <leader>R :w<esc>:term mdv %<CR>
 	autocmd FileType rust nnoremap <leader>R :w<esc>:term rustc % -o a.out && ./a.out && rm a.out<CR>
+    autocmd FileType java nnoremap <leader>R :w<esc>:term java %<CR>
 
 
 "tagbar toggle
@@ -154,6 +165,9 @@ nnoremap ] }
 
 " Some shortcuts
 	nnoremap ci( f)ci(
+    nnoremap ci{ f}ci{
+    nnoremap ci[ f]ci[
+    inoremap <C-A> <esc>A
 	nnoremap E $
     nnoremap D <c-d>
     nnoremap U <c-u>
