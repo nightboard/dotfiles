@@ -64,6 +64,7 @@ Plug 'mbbill/undotree'                                      "for undo stuff
 Plug 'voldikss/vim-floaterm'								"float term
 Plug 'maksimr/vim-jsbeautify'								"formate
 Plug 'kyoz/purify', { 'rtp': 'vim' }						"colorscheme
+Plug 'joshdick/onedark.vim'                                 "colorscheme
 Plug 'drewtempelmeyer/palenight.vim'                        "colorscheme
 Plug 'rust-lang/rust.vim'                                   "rust
 Plug 'puremourning/vimspector'                              "debug
@@ -91,6 +92,31 @@ call plug#end()
 "-----------------purify------------------
 colorscheme purify
 " colorscheme palenight
+"------------------------------------------
+
+"----------------onedark-------------------
+" onedark.vim override: Don't set a background color when running in a terminal;
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+  augroup END
+endif
+
+hi Comment cterm=italic
+let g:onedark_hide_endofbuffer=1
+let g:onedark_terminal_italics=1
+let g:onedark_termcolors=256
+
+syntax on
+colorscheme onedark
+
+
+" checks if your terminal has 24-bit color support
+if (has("termguicolors"))
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
 "------------------------------------------
 
 "-------------------------------------------------basic---------------------------------------------------
