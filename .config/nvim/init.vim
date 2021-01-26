@@ -1,5 +1,39 @@
+"-----------------------------------------leader key---------------------------------------------------
 let mapleader =" "
-inoremap <c-z> <esc>
+"----------------------------------------------------------------------------------------------------------
+
+"------------------------------------------basic mappings------------------------------------------
+
+" For Normal Mode
+    inoremap <c-z> <esc>
+    inoremap jk <esc>
+
+" For Traversing
+    inoremap <C-A> <esc>A
+
+" For Multiple Tabs
+    nnoremap K :tabnext<CR>
+    nnoremap J :tabprevious<CR>
+
+" Binds I use
+	nnoremap E $
+    nnoremap D <c-d>
+    nnoremap U <c-u>
+    inoremap <c-k> <esc>ki
+    inoremap <c-j> <esc>ji
+
+" Shortcutting split navigation, saving a keypress:
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
+
+" full screen mode
+	nnoremap <leader>m :AirlineToggle<CR><esc>:set laststatus=0<CR><esc>:set nonumber<CR><esc>:set norelativenumber<esc>:set noruler<esc>:set noshowmode<esc>:highlight NonText ctermfg=0<CR>
+
+" Normal Mode in terminal
+	tnoremap <leader><esc> <C-\><C-N>
+"----------------------------------------------------------------------------------------------------------
 
 "-----------------------------------------plugin manager---------------------------------------------------
 if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
@@ -105,7 +139,7 @@ nnoremap ] }
 "--------------------------------------------------------------------------------------------------------
 
 "------------------------------------------mappings------------------------------------------------------
-"auto compile
+" Floaterm plugin
 	autocmd FileType javascript nnoremap <leader>r :w<esc>:FloatermNew node %<CR>
 	autocmd FileType c nnoremap <leader>r :w<esc>:FloatermNew gcc % && ./a.out && rm a.out<CR>
 	autocmd FileType cpp nnoremap <leader>r :w<esc>:FloatermNew g++ % && ./a.out && rm a.out<CR>
@@ -117,7 +151,7 @@ nnoremap ] }
 	autocmd FileType typescript nnoremap <leader>r :w<esc>:FloatermNew tsc % --outFile a.js ; cat a.js ; rm a.js<CR>
     autocmd FileType java nnoremap <leader>r :w<esc>:FloatermNew java %<CR>
 
-" auto compile
+" Terminal Mode
 	autocmd FileType c nnoremap <leader>R :w<esc>:term gcc % && ./a.out && rm a.out<CR>
 	autocmd FileType javascript nnoremap <leader>R :w<esc>:term node %<CR>
 	autocmd FileType cpp nnoremap <leader>R :w<esc>:term g++ % && ./a.out && rm a.out<CR>
@@ -129,21 +163,17 @@ nnoremap ] }
     autocmd FileType java nnoremap <leader>R :w<esc>:term java %<CR>
 
 
-"tagbar toggle
+" tagbar plugin toggle
 	nnoremap <leader>t :w<esc>:TagbarToggle<CR>
 
-"groff document
-	nmap <c-g> :! groff -ms -e % -T pdf > output.pdf ; zathura output.pdf<CR><CR>
+" filename
+    let filename = expand("%:r:t")
 
-"undotree
+" groff document
+	nmap <c-g> :w<CR>:! groff -ms -e % -T pdf > output.pdf ; zathura output.pdf<CR><CR>
+
+" undotree plugin
 	nnoremap <leader>u :UndotreeToggle<CR>
-
-
-"Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 	map <leader>o :setlocal spell! spelllang=en_us<CR>
@@ -164,19 +194,28 @@ nnoremap ] }
 	map <leader>p :!opout <c-r>%<CR><CR>
 
 " Some shortcuts
-	nnoremap ci( f)ci(
-    nnoremap ci{ f}ci{
-    nnoremap ci[ f]ci[
-    inoremap <C-A> <esc>A
-	nnoremap E $
-    nnoremap D <c-d>
-    nnoremap U <c-u>
+    inoremap <c-s> <esc>:w<cr>
+    nnoremap <c-s> <esc>:w<cr>
+    nnoremap <c-i> 084lwi<ENTER><esc>
+	autocmd FileType javascript,java nnoremap yib 0f;wd$F(px
+    autocmd FileType python nnoremap yib 0f)wd$F(p
 
-" terminal
-	tnoremap <leader><esc> <C-\><C-N>
+" web-dev
+    autocmd FileType html inoremap .<tab> <div class=""></div><esc>F"
+    autocmd FileType html inoremap p<tab> <p></p><esc>F<
+    autocmd FileType html inoremap h1<tab> <h1></h1><esc>F<
+    autocmd FileType html inoremap h2<tab> <h2></h2><esc>F<
+    autocmd FileType html inoremap h3<tab> <h3></h3><esc>F<
+    autocmd FileType html inoremap h4<tab> <h4></h4><esc>F<
+    autocmd FileType html inoremap h5<tab> <h5></h5><esc>F<
+    autocmd FileType html inoremap h6<tab> <h6></h6><esc>F<
 
-" full screen mode
-	nnoremap <leader>m :AirlineToggle<CR><esc>:set laststatus=0<CR><esc>:set nonumber<CR><esc>:set norelativenumber<esc>:set noruler<esc>:set noshowmode<esc>:highlight NonText ctermfg=0<CR>
+" oh-my-groff
+    autocmd BufNewFile,BufRead *.ms set filetype=groff
+    autocmd FileType groff nnoremap mb A:<esc>0i\f[B]<esc>f:a\f[]
+    autocmd FileType groff nnoremap mi A:<esc>0i\f[I]<esc>f:a\f[]
+
+
 "---------------------------------------------------------------------------------------------------------
 
 "---------------------------------------------Nerd tree---------------------------------------------------
