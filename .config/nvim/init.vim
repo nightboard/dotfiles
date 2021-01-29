@@ -90,7 +90,7 @@ call plug#end()
 "----------------------------------------------
 
 "-----------------purify------------------
-colorscheme purify
+" colorscheme purify
 " colorscheme palenight
 "------------------------------------------
 
@@ -111,12 +111,16 @@ let g:onedark_termcolors=256
 syntax on
 colorscheme onedark
 
-
 " checks if your terminal has 24-bit color support
 if (has("termguicolors"))
     set termguicolors
     hi LineNr ctermbg=NONE guibg=NONE
 endif
+
+
+" highlight Normal     ctermbg=NONE guibg=NONE
+" highlight LineNr     ctermbg=NONE guibg=NONE
+" highlight SignColumn ctermbg=NONE guibg=NONE
 "------------------------------------------
 
 "-------------------------------------------------basic---------------------------------------------------
@@ -238,8 +242,9 @@ nnoremap ] }
 
 " oh-my-groff
     autocmd BufNewFile,BufRead *.ms set filetype=groff
-    autocmd FileType groff nnoremap mb A:<esc>0i\f[B]<esc>f:a\f[]
-    autocmd FileType groff nnoremap mi A:<esc>0i\f[I]<esc>f:a\f[]
+    autocmd FileType groff vnoremap se :s/’/'/g<CR>
+    autocmd FileType groff vnoremap mb xi\f[B]<esc>pa\f[]
+    autocmd FileType groff vnoremap mi xi\f[I]<esc>pa\f[]
 
 
 "---------------------------------------------------------------------------------------------------------
