@@ -227,7 +227,7 @@ nnoremap ] }
     inoremap <c-s> <esc>:w<cr>
     nnoremap <c-s> <esc>:w<cr>
     nnoremap <c-i> 084lwi<ENTER><esc>
-	autocmd FileType javascript,java nnoremap yib 0f;wd$F(px
+	autocmd FileType javascript,java,c nnoremap yib 0f;wd$F(px
     autocmd FileType python nnoremap yib 0f)wd$F(p
 
 " web-dev
@@ -242,9 +242,17 @@ nnoremap ] }
 
 " oh-my-groff
     autocmd BufNewFile,BufRead *.ms set filetype=groff
-    autocmd FileType groff vnoremap se :s/’/'/g<CR>
+    autocmd FileType groff vnoremap se1 :s/’/'/g<CR>
+    autocmd FileType groff vnoremap se2 :s/”/"/g<CR>
+    autocmd FileType groff vnoremap se3 :s/“/"/g<CR>
+    autocmd FileType groff vnoremap se4 :s/–/-/g<CR>
+
+
     autocmd FileType groff vnoremap mb xi\f[B]<esc>pa\f[]
     autocmd FileType groff vnoremap mi xi\f[I]<esc>pa\f[]
+
+" java
+	" autocmd FileType java nnoremap K "kyaw:term javap java.lang.<C-r>k<CR>
 
 
 "---------------------------------------------------------------------------------------------------------
@@ -290,6 +298,7 @@ noremap <C-m> :<S-Left>exe "<S-Right>normal! I".b:commentType<CR>
 autocmd BufReadPost *.[ch] let b:commentType='//' "C files
 autocmd BufReadPost *.pl let b:commentType='#'    "Perl files
 autocmd BufNewFile *.cpp r ~/.config/nvim/templates/a.cpp
+autocmd BufNewFile *.java r ~/.config/nvim/templates/a.java
 
 set timeoutlen=1000
 set ttimeoutlen=0
